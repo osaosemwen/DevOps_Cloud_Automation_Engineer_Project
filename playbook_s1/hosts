@@ -1,0 +1,11 @@
+[pythian_vm]
+192.168.33.10
+
+#pythian_vm ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+
+
+
+
+
+
+

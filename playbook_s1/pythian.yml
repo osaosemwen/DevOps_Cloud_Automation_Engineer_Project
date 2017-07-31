@@ -1,0 +1,39 @@
+- name: Configure vm for pythian submission
+  hosts: pythian_vm
+  sudo: True
+  tasks:
+
+     - name: Test if the VM server is alive
+       action: ping
+     
+     - name: install git
+       apt: name=git update_cache=yes state=present
+
+     - name: install apache
+       apt: name=apache2 update_cache=yes
+
+     - name: install mysql server and client
+       apt: name=mysql-server update_cache=yes
+       apt: name=mysql-client update_cache=yes
+
+     - name: creating a folder code in /opt/code with group name pythian mode:0750
+       file:
+         path: /opt/code
+         state: directory
+         owner: root
+         group: pythian
+         mode: 0750
+
+     - name: Clone private repo into /opt/code
+       git:
+         repo: https://github.com/mininet/mininet
+         version: master
+         dest: /opt/code
+         accept_hostkey: yes
+       # ssh-agent preventing key to pass through remote sudo commands
+       become: yes
+#       become_user = pythian
+
+     - group:
+         name: pythian
+         state: present

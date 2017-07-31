@@ -1,0 +1,10 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 443, host: 8443
+  config.vm.network "private_network", ip: "192.168.33.10"
+  # The first line selects the Vagrant machine to be Ubuntu/trust64 
+  # The next maps port 8080 and 8443 respectively of your local computer in my case Macbook to port 80 and 443 of the Vagrant machine. 
+  # The next line configures this Vagrant machine to a local network of IP "192.168.33.10"
+end
