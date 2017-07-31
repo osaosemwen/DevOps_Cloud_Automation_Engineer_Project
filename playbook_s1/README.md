@@ -41,6 +41,7 @@ The Playbook
          vi)  Group naming: Although this is not required. I just created a group pythian      
    
   Run:  Simply type $ ansible-playbook pythian.yml on the terminal and the playbook will be set into action
+        NB: if you want to enter vagrant provision, you may have to delete the file pythian4.yml
       
             
 
